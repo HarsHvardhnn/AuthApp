@@ -22,38 +22,38 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/your-username/auth-app.git
+git clone https://github.com/HarsHvardhnn/AuthApp
 Navigate to the project directory:
 
 bash
-Copy code
+
 cd auth-app
 Install dependencies:
 
 bash
-Copy code
+
 npm install
 Set up your MongoDB connection by editing the .env file with your MongoDB URI:
 
 env
-Copy code
+
 MONGODB_URI=your_mongodb_uri
 Configure your email service in the .env file (for Nodemailer):
 
 env
-Copy code
+
 EMAIL_SERVICE=your_email_service
 EMAIL_USER=your_email_username
 EMAIL_PASS=your_email_password
 Start the application:
 
 bash
-Copy code
+
 npm start
-The app should now be running on http://localhost:3000.
+The app should now be running on http://localhost:9999.
 
 Usage
-Open your browser and navigate to http://localhost:3000.
+Open your browser and navigate to http://localhost:9999.
 Register a new account.
 Log in using your registered credentials.
 Use the provided functionalities for account-related actions.
