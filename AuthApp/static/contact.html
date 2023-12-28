@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="nav.css">
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding-top: 60px; /* Adjust this value to create space for the fixed navigation bar */
+            background-image: url('./bghome.jpg');
+   
+   background-size: cover; /* This ensures the image covers the entire container */
+   
+   background-repeat: no-repeat; /* Prevents the background image from repeating */
+   max-width: 100%; /* Makes the image responsive */
+        }
+
+      
+        .content {
+            padding: 20px;
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #contactForm {
+            max-width: 600px;
+            width: 100%;
+            box-sizing: border-box;
+            
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            transition: box-shadow 0.3s;
+        }
+
+        #contactForm label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        #contactForm input,
+        #contactForm textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        #contactForm input:focus,
+        #contactForm textarea:focus {
+            border-color: #3498db;
+            outline: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body> 	<nav>
+    <a href="./index.html">Home</a>
+    <a href="./login.html">Login</a>
+    <a href="./Contact.html">Contact</a>
+</nav>
+<div class="content">
+    <h1 style=" color: white; padding: 10px;">Contact Us</h1>
+    
+    <form action="#" method="post" id="contactForm">
+        <label style=" color: white; padding: 10px ; font-weight: bold;" for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label style=" color: white; padding: 10px; font-weight: bold;" for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label style=" color: white; padding: 10px; font-weight: bold;" for="message">Message:</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form> </div>
+
+   
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ContactForm = document.getElementById('contactForm');
+            ContactForm.addEventListener('submit', submitContactForm);
+
+            async function submitContactForm(event) {
+                event.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+
+                try {
+                    const result = await fetch('/api/contact', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            name,
+                            email,
+                            message
+                        })
+                    }).then((res) => res.json());
+
+                    if (result.status === 'ok') {
+                        // everything went fine
+                        alert('Success');
+                    } else {
+                        alert(result.error);
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred while submitting the form.');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>
